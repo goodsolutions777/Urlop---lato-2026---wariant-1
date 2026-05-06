@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<title>Premium EV Roadtrip</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+html,body,#map{height:100%;margin:0;font-family:Arial,sans-serif}
+.panel{position:absolute;top:16px;left:16px;z-index:1000;width:420px;max-width:calc(100% - 40px);background:rgba(255,255,255,.96);padding:18px;border-radius:18px;box-shadow:0 10px 35px rgba(0,0,0,.25)}
+.panel h1{margin:0 0 10px;font-size:22px}
+.panel p{font-size:14px;line-height:1.45}
+.badge{display:inline-block;background:#111;color:#fff;padding:5px 10px;border-radius:999px;font-size:12px}
+.num{width:34px;height:34px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border:2px solid #fff}
+.tag{display:inline-block;background:#111;color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.card h2{margin:10px 0;font-size:18px}
+.card p{margin:7px 0;line-height:1.4}
+.leaflet-popup-content-wrapper{border-radius:16px}
+</style>
+</head>
+<body>
+<div class="panel">
+<h1>Premium EV Roadtrip 29.06–12.07</h1>
+<p><b>Trasa:</b> Berlin → Szwajcaria → Annecy → Côte d’Azur → Liguria → Wenecja → Austria → Wiedeń → Praga → Berlin.</p>
+<p><b>BMW i5 + rowery:</b> planowane komfortowe ładowania co ~250–300 km.</p>
+<p><b>Strategia:</b> mniej chaosu Saint‑Tropez, więcej jakości kulturowej i alpejskiej.</p>
+<span class="badge">Kliknij punkty na mapie</span>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var map = L.map('map').setView([46.5,9.5],5);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+maxZoom:18,
+attribution:'&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+function makeIcon(number){
+return L.divIcon({
+className:'',
+html:'<div class="num">'+number+'</div>',
+iconSize:[34,34],
+iconAnchor:[17,17],
+popupAnchor:[0,-18]
+});
+}
+
+L.marker([52.52,13.405], {icon: makeIcon('S')})
+.addTo(map)
+.bindPopup('<b>Berlin</b><br>Start i zakończenie podróży.');
+
+
+    L.marker([47.0325, 8.4326], {icon: makeIcon('1')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>29.06</div>\n      <h2>Berlin \u2192 Weggis / Lucerna</h2>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ~830\u2013900 km</p>\n      <p><b>EV / BMW i5:</b> 4\u20135 \u0142adowa\u0144 HPC; najci\u0119\u017cszy dzie\u0144</p>\n      <p><b>Dlaczego:</b> Elegancki start nad jeziorem i spokojniejsza logistyka ni\u017c \u015bcis\u0142a Lucerna.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+    L.marker([46.6863, 7.8632], {icon: makeIcon('2')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>30.06\u201301.07</div>\n      <h2>Interlaken / Lauterbrunnen</h2>\n      <p><b>Nocleg:</b> 2 noce</p>\n      <p><b>Odcinek:</b> ~120 km</p>\n      <p><b>EV / BMW i5:</b> bardzo komfortowy etap dla BMW i5</p>\n      <p><b>Dlaczego:</b> Najmocniejszy punkt szwajcarski: jeziora, Jungfrau region, e-bike i widoki.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+    L.marker([46.0679, 7.776], {icon: makeIcon('3')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>02.07</div>\n      <h2>T\u00e4sch / Zermatt</h2>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ~140\u2013170 km</p>\n      <p><b>EV / BMW i5:</b> lekki dzie\u0144; auto zostaje w T\u00e4sch</p>\n      <p><b>Dlaczego:</b> Matterhorn bez logistycznego chaosu Zermatt.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+    L.marker([45.8992, 6.1294], {icon: makeIcon('4')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>03.07</div>\n      <h2>Annecy</h2>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ~260\u2013300 km</p>\n      <p><b>EV / BMW i5:</b> 1 spokojne \u0142adowanie po drodze</p>\n      <p><b>Dlaczego:</b> Mi\u0119kkie przej\u015bcie z Alp do Francji.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+    L.marker([43.2733, 6.5856], {icon: makeIcon('5')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>04.07\u201305.07</div>\n      <h2>Grimaud / Cogolin / Sainte\u2011Maxime</h2>\n      <p><b>Nocleg:</b> 2 noce</p>\n      <p><b>Odcinek:</b> ~430\u2013480 km</p>\n      <p><b>EV / BMW i5:</b> 2 \u0142adowania HPC</p>\n      <p><b>Dlaczego:</b> Najrozs\u0105dniejsza baza dla Saint\u2011Tropez bez chaosu centrum.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+    L.marker([44.335, 9.212], {icon: makeIcon('6')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>06.07\u201307.07</div>\n      <h2>Rapallo / Santa Margherita</h2>\n      <p><b>Nocleg:</b> 2 noce</p>\n      <p><b>Odcinek:</b> ~350\u2013420 km</p>\n      <p><b>EV / BMW i5:</b> 1\u20132 \u0142adowania</p>\n      <p><b>Dlaczego:</b> Portofino i Liguria w bardziej autentycznym wydaniu.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+    L.marker([45.4942, 12.242], {icon: makeIcon('7')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>08.07\u201309.07</div>\n      <h2>Wenecja / Mestre</h2>\n      <p><b>Nocleg:</b> 2 noce</p>\n      <p><b>Odcinek:</b> ~370\u2013430 km</p>\n      <p><b>EV / BMW i5:</b> bardzo dobry region dla EV</p>\n      <p><b>Dlaczego:</b> Wenecja jako g\u0142\u00f3wny punkt kulturowy podr\u00f3\u017cy.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+    L.marker([47.3235, 12.7968], {icon: makeIcon('8')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>10.07</div>\n      <h2>Zell am See / Kaprun</h2>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ~430\u2013500 km</p>\n      <p><b>EV / BMW i5:</b> Austria bardzo komfortowa dla EV</p>\n      <p><b>Dlaczego:</b> Alpejski reset po Wenecji.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+    L.marker([48.2082, 16.3738], {icon: makeIcon('9')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>11.07</div>\n      <h2>Wiede\u0144</h2>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ~380\u2013420 km</p>\n      <p><b>EV / BMW i5:</b> \u0142atwy etap z bardzo dobr\u0105 infrastruktur\u0105 HPC</p>\n      <p><b>Dlaczego:</b> Elegancki fina\u0142 \u015brodkowoeuropejski.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+    L.marker([50.0755, 14.4378], {icon: makeIcon('10')})
+    .addTo(map)
+    .bindPopup("\n    <div class='card'>\n      <div class='tag'>12.07</div>\n      <h2>Praga \u2192 Berlin</h2>\n      <p><b>Nocleg:</b> powr\u00f3t</p>\n      <p><b>Odcinek:</b> ~680 km do Berlina</p>\n      <p><b>EV / BMW i5:</b> 3\u20134 \u0142adowania</p>\n      <p><b>Dlaczego:</b> Praga jako ko\u0144cowy przystanek klimatyczny.</p>\n    </div>\n    ", {maxWidth: 420});
+    
+
+var route = L.polyline([[52.52, 13.405], [47.0325, 8.4326], [46.6863, 7.8632], [46.0679, 7.776], [45.8992, 6.1294], [43.2733, 6.5856], [44.335, 9.212], [45.4942, 12.242], [47.3235, 12.7968], [48.2082, 16.3738], [50.0755, 14.4378], [52.52, 13.405]], {
+weight:5,
+opacity:0.85
+}).addTo(map);
+
+map.fitBounds(route.getBounds(), {padding:[40,40]});
+</script>
+</body>
+</html>
