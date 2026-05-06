@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<title>Interaktywna mapa roadtrip EV: Berlin–Szwajcaria–Saint‑Tropez–Włochy–Austria–Praga</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  html, body, #map { height: 100%; margin: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+  .panel {
+    position: absolute; z-index: 1000; top: 14px; left: 14px;
+    width: 390px; max-width: calc(100% - 38px);
+    background: rgba(255,255,255,0.96);
+    border-radius: 16px; padding: 14px 16px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.22);
+    line-height: 1.35;
+  }
+  .panel h1 { font-size: 18px; margin: 0 0 6px 0; }
+  .panel p { margin: 6px 0; font-size: 13px; }
+  .badge { display:inline-block; background:#111; color:#fff; padding:3px 8px; border-radius:999px; font-size:12px; margin-top:6px; }
+  .legend { font-size:12px; color:#333; margin-top:8px; }
+  .popup h3 { margin: 4px 0 8px; font-size: 17px; }
+  .popup p { margin: 6px 0; font-size: 13px; }
+  .popup .date { display:inline-block; background:#111; color:#fff; padding:4px 9px; border-radius:999px; font-weight:700; font-size:12px; }
+  .num-icon {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: #111; color: white; display: flex;
+    align-items: center; justify-content: center;
+    border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,.35);
+    font-weight: 700; font-size: 13px;
+  }
+  .leaflet-popup-content-wrapper { border-radius: 14px; }
+</style>
+</head>
+<body>
+<div class="panel">
+  <h1>Roadtrip EV 29.06–12.07</h1>
+  <p><b>Trasa:</b> Berlin → Szwajcaria → Annecy → okolice Saint‑Tropez → Liguria/Cinque Terre → Südtirol → Austria → Praga → Berlin.</p>
+  <p><b>Założenie EV:</b> BMW i5 z rowerami, realny komfortowy zasięg planistyczny 250–300 km między ładowaniami.</p>
+  <span class="badge">Kliknij numer na mapie</span>
+  <div class="legend">Punkty pokazują rekomendowane bazy noclegowe, nie zawsze ścisłe centra miast.</div>
+</div>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var map = L.map('map').setView([46.5, 9.5], 5);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 18,
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+function numberIcon(n) {
+  return L.divIcon({
+    className: '',
+    html: '<div class="num-icon">' + n + '</div>',
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+    popupAnchor: [0, -15]
+  });
+}
+
+L.marker([52.5200,13.4050], {icon: numberIcon('S')})
+  .addTo(map)
+  .bindPopup('<b>Start / meta: Berlin</b><br>Wyjazd 29.06 bardzo wcześnie rano, powrót 12.07.');
+
+
+    L.marker([47.0325, 8.4326], {icon: numberIcon('1')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">29.06</div>\n      <h3>Berlin \u2192 Weggis / Lucerna</h3>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ok. 830\u2013900 km</p>\n      <p><b>EV/BMW i5:</b> 4\u20135 \u0142adowa\u0144 HPC po drodze; nocleg koniecznie z parkingiem/\u0142adowaniem AC</p>\n      <p><b>Dlaczego:</b> Mocny transfer startowy. Weggis/Lucerna daje jezioro, elegancki klimat i \u0142atwy wyjazd dalej w Alpy.</p>\n      <p><b>Rowery:</b> Kr\u00f3tka przeja\u017cd\u017cka nad Vierwaldst\u00e4ttersee, bez forsowania po d\u0142ugiej trasie.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+    L.marker([46.6863, 7.8632], {icon: numberIcon('2')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">30.06\u201301.07</div>\n      <h3>Interlaken / Wilderswil / Lauterbrunnen</h3>\n      <p><b>Nocleg:</b> 2 noce</p>\n      <p><b>Odcinek:</b> z Weggis ok. 100\u2013130 km</p>\n      <p><b>EV/BMW i5:</b> lekki etap; do\u0142adowa\u0107 do 80\u201390% przed dalsz\u0105 jazd\u0105 w stron\u0119 Valais</p>\n      <p><b>Dlaczego:</b> Najlepszy szwajcarski punkt trasy: jeziora, Lauterbrunnen, Grindelwald, Jungfrau region.</p>\n      <p><b>Rowery:</b> Bardzo mocny punkt dla e-bike: jezioro Brienz/Thun, dolina Lauterbrunnen, spokojne odcinki widokowe.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+    L.marker([46.0679, 7.776], {icon: numberIcon('3')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">02.07</div>\n      <h3>T\u00e4sch / Zermatt</h3>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ok. 140\u2013170 km</p>\n      <p><b>EV/BMW i5:</b> bez stresu; auto zostaje w T\u00e4sch, dalej poci\u0105g do Zermatt</p>\n      <p><b>Dlaczego:</b> Matterhorn jako obowi\u0105zkowy punkt premium, ale logistycznie nocleg w T\u00e4sch jest rozs\u0105dniejszy.</p>\n      <p><b>Rowery:</b> Raczej spacer/Zermatt ni\u017c rowery; wa\u017cniejszy jest widok i klimat.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+    L.marker([45.8992, 6.1294], {icon: numberIcon('4')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">03.07</div>\n      <h3>Annecy</h3>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ok. 260\u2013300 km</p>\n      <p><b>EV/BMW i5:</b> 1 spokojne \u0142adowanie po drodze; dobra d\u0142ugo\u015b\u0107 etapu dla i5 z rowerami</p>\n      <p><b>Dlaczego:</b> Elegancki przystanek mi\u0119dzy Alpami a po\u0142udniem Francji: jezioro, stare miasto, klimat.</p>\n      <p><b>Rowery:</b> \u015awietna trasa rowerowa wok\u00f3\u0142 jeziora Annecy \u2014 idealna na popo\u0142udnie lub poranek.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+    L.marker([43.2733, 6.5856], {icon: numberIcon('5')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">04.07\u201306.07</div>\n      <h3>Grimaud / Cogolin / Ramatuelle / Sainte\u2011Maxime</h3>\n      <p><b>Nocleg:</b> 2\u20133 noce; rekomenduj\u0119 2 noce</p>\n      <p><b>Odcinek:</b> ok. 430\u2013480 km z Annecy</p>\n      <p><b>EV/BMW i5:</b> 2 \u0142adowania HPC; nie wje\u017cd\u017ca\u0107 z nisk\u0105 bateri\u0105 w okolice Saint\u2011Tropez</p>\n      <p><b>Dlaczego:</b> Baza dla Saint\u2011Tropez i Pampelonne bez spania w najdro\u017cszym, zakorkowanym centrum.</p>\n      <p><b>Rowery:</b> Rowerami mo\u017cna ogarnia\u0107 kr\u00f3tsze przejazdy lokalne, ale w lipcu trzeba uwa\u017ca\u0107 na upa\u0142 i ruch.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+    L.marker([44.335, 9.212], {icon: numberIcon('6')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">07.07\u201308.07</div>\n      <h3>Rapallo / Santa Margherita Ligure</h3>\n      <p><b>Nocleg:</b> 2 noce</p>\n      <p><b>Odcinek:</b> ok. 350\u2013420 km</p>\n      <p><b>EV/BMW i5:</b> 1\u20132 \u0142adowania; wa\u017cny hotel z parkingiem, bo Liguria jest ciasna</p>\n      <p><b>Dlaczego:</b> Najlepsza baza pod Portofino, Camogli i San Fruttuoso bez koszmaru cenowo-parkingowego Portofino.</p>\n      <p><b>Rowery:</b> Rowery raczej lokalnie/rekreacyjnie; topografia i ruch wymagaj\u0105 selekcji tras.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+    L.marker([44.17, 9.612], {icon: numberIcon('7')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">09.07</div>\n      <h3>Levanto / La Spezia / Cinque Terre</h3>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ok. 60\u2013100 km</p>\n      <p><b>EV/BMW i5:</b> kr\u00f3tki etap; \u0142adowa\u0107 przy hotelu lub przed nast\u0119pnym d\u0142ugim etapem</p>\n      <p><b>Dlaczego:</b> Cinque Terre najlepiej robi\u0107 bez auta w wioskach \u2014 baza w Levanto/La Spezia jest logistycznie rozs\u0105dna.</p>\n      <p><b>Rowery:</b> Mo\u017cliwy odcinek widokowy lub poci\u0105g + spacer; nie pcha\u0107 auta do miasteczek.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+    L.marker([46.4983, 11.3548], {icon: numberIcon('8')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">10.07</div>\n      <h3>Bolzano / Merano</h3>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ok. 420\u2013480 km</p>\n      <p><b>EV/BMW i5:</b> 2 \u0142adowania; wjazd z wybrze\u017ca w Alpy, planowa\u0107 zapas</p>\n      <p><b>Dlaczego:</b> S\u00fcdtirol jako ch\u0142odniejszy, elegancki reset po wybrze\u017cu. Bardzo dobry punkt rowerowy i kulinarny.</p>\n      <p><b>Rowery:</b> \u015awietne \u015bcie\u017cki w dolinie Adygi; dobry etap e-bike bez nadmiernego ryzyka.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+    L.marker([47.3235, 12.7968], {icon: numberIcon('9')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">11.07</div>\n      <h3>Zell am See / Kaprun</h3>\n      <p><b>Nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ok. 250\u2013320 km zale\u017cnie od wariantu</p>\n      <p><b>EV/BMW i5:</b> 1 \u0142adowanie lub nocne AC; Austria jest \u0142atwa dla EV</p>\n      <p><b>Dlaczego:</b> Alpejski fina\u0142: jezioro, Grossglockner, widoki, ale bez chaosu po\u0142udnia.</p>\n      <p><b>Rowery:</b> Bardzo dobry spokojny odcinek nad jeziorem; opcjonalnie e-bike w dolinach.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+    L.marker([50.0755, 14.4378], {icon: numberIcon('10')})
+      .addTo(map)
+      .bindPopup("\n    <div class=\"popup\">\n      <div class=\"date\">12.07</div>\n      <h3>Wiede\u0144 / Praga \u2192 Berlin</h3>\n      <p><b>Nocleg:</b> powr\u00f3t</p>\n      <p><b>Odcinek:</b> Zell am See \u2192 Berlin przez Wiede\u0144/Prag\u0119: bardzo d\u0142ugi dzie\u0144</p>\n      <p><b>EV/BMW i5:</b> 3\u20134 \u0142adowania; wyjazd bardzo wcze\u015bnie; traktowa\u0107 Prag\u0119/Wiede\u0144 jako post\u00f3j, nie pe\u0142ne zwiedzanie</p>\n      <p><b>Dlaczego:</b> Powr\u00f3t przez Austri\u0119, Wiede\u0144 i Prag\u0119. Realistycznie lepiej wybra\u0107 jeden mocniejszy post\u00f3j.</p>\n      <p><b>Rowery:</b> Tego dnia rowery nie maj\u0105 sensu \u2014 to etap powrotny.</p>\n    </div>\n    ", {maxWidth: 390});
+    
+
+var route = L.polyline([[52.52, 13.405], [47.0325, 8.4326], [46.6863, 7.8632], [46.0679, 7.776], [45.8992, 6.1294], [43.2733, 6.5856], [44.335, 9.212], [44.17, 9.612], [46.4983, 11.3548], [47.3235, 12.7968], [50.0755, 14.4378], [52.52, 13.405]], {
+  weight: 5,
+  opacity: 0.82
+}).addTo(map);
+
+map.fitBounds(route.getBounds(), {padding: [38, 38]});
+</script>
+</body>
+</html>
