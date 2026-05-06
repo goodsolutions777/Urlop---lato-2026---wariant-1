@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<title>EV Roadtrip + lot Berlin-Londyn — Lewis Capaldi Hyde Park 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+html,body,#map{height:100%;margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.panel{position:absolute;top:16px;left:16px;z-index:1000;width:470px;max-width:calc(100% - 42px);background:rgba(255,255,255,.96);padding:18px 20px;border-radius:18px;box-shadow:0 10px 35px rgba(0,0,0,.24)}
+.panel h1{margin:0 0 8px;font-size:22px}
+.panel p{margin:8px 0;font-size:14px;line-height:1.45}
+.warning{margin-top:10px;padding:9px 11px;background:#f3f3f3;border-left:4px solid #111;border-radius:8px;font-size:13px;line-height:1.35}
+.badge{display:inline-block;background:#111;color:#fff;padding:5px 10px;border-radius:999px;font-size:12px;margin-top:6px}
+.num{width:34px;height:34px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border:2px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.date{display:inline-block;background:#111;color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.card h2{margin:10px 0;font-size:18px}
+.card p{margin:7px 0;line-height:1.4}
+.leaflet-popup-content-wrapper{border-radius:16px}
+</style>
+</head>
+<body>
+<div class="panel">
+<h1>EV Roadtrip + Londyn 29.06–12.07</h1>
+<p><b>Strategia:</b> atrakcyjny roadtrip EV kończy się w Berlinie 9/10.07, a Londyn robicie samolotem 10–12.07.</p>
+<p><b>BMW i5 + rowery:</b> planowanie trasy co ok. 220–280 km między ładowaniami; noclegi z parkingiem i AC.</p>
+<div class="warning"><b>Bezpieczny wariant koncertowy:</b> lot do Londynu 10.07, nocleg 10–12.07, koncert 11.07, powrót 12.07. Nie lecieć dopiero w dniu koncertu.</div>
+<span class="badge">Kliknij punkty na mapie</span>
+</div>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var map=L.map('map').setView([47.8,6.5],5);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+function makeIcon(number){return L.divIcon({className:'',html:'<div class="num">'+number+'</div>',iconSize:[34,34],iconAnchor:[17,17],popupAnchor:[0,-18]});}
+L.marker([47.0325,8.4326], {icon: makeIcon('1')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>29.06</div>\n      <h2>Berlin \u2192 Weggis / Lucerna</h2>\n      <p><b>Status/nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ~850\u2013900 km</p>\n      <p><b>Czas realny:</b> ~11\u201313 h EV</p>\n      <p><b>Transport/EV:</b> 4\u20135 HPC</p>\n      <p><b>Dlaczego:</b> Najci\u0119\u017cszy transfer, ale daje mocny start w Szwajcarii.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([46.6863,7.8632], {icon: makeIcon('2')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>30.06\u201301.07</div>\n      <h2>Interlaken / Lauterbrunnen</h2>\n      <p><b>Status/nocleg:</b> 2 noce</p>\n      <p><b>Odcinek:</b> ~100\u2013130 km</p>\n      <p><b>Czas realny:</b> ~2\u20133 h</p>\n      <p><b>Transport/EV:</b> AC hotelowe / lokalne HPC</p>\n      <p><b>Dlaczego:</b> Najlepszy szwajcarski punkt: Jungfrau, Lauterbrunnen, jeziora, e-bike.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([46.0679,7.776], {icon: makeIcon('3')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>02.07</div>\n      <h2>T\u00e4sch / Zermatt</h2>\n      <p><b>Status/nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ~140\u2013170 km</p>\n      <p><b>Czas realny:</b> ~3\u20134 h</p>\n      <p><b>Transport/EV:</b> lekki etap</p>\n      <p><b>Dlaczego:</b> Matterhorn bez pchania auta do Zermatt; auto zostaje w T\u00e4sch.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([45.8992,6.1294], {icon: makeIcon('4')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>03.07</div>\n      <h2>Annecy</h2>\n      <p><b>Status/nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ~260\u2013300 km</p>\n      <p><b>Czas realny:</b> ~4\u20135 h</p>\n      <p><b>Transport/EV:</b> 1 \u0142adowanie</p>\n      <p><b>Dlaczego:</b> Eleganckie przej\u015bcie z Alp do Francji; jezioro i rowery.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([43.2733,6.5856], {icon: makeIcon('5')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>04.07\u201305.07</div>\n      <h2>Grimaud / Cogolin / Sainte-Maxime</h2>\n      <p><b>Status/nocleg:</b> 2 noce</p>\n      <p><b>Odcinek:</b> ~430\u2013480 km</p>\n      <p><b>Czas realny:</b> ~6\u20138 h</p>\n      <p><b>Transport/EV:</b> 2 HPC</p>\n      <p><b>Dlaczego:</b> Cote d\u2019Azur i Saint-Tropez bez nocowania w drogim, zakorkowanym centrum.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([44.335,9.212], {icon: makeIcon('6')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>06.07</div>\n      <h2>Rapallo / Santa Margherita Ligure</h2>\n      <p><b>Status/nocleg:</b> 1 noc</p>\n      <p><b>Odcinek:</b> ~350\u2013420 km</p>\n      <p><b>Czas realny:</b> ~5.5\u20137.5 h</p>\n      <p><b>Transport/EV:</b> 1\u20132 HPC</p>\n      <p><b>Dlaczego:</b> Skr\u00f3cony, ale zostaje Portofino/Liguria. Druga noc odpada przez Londyn.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([45.4942,12.242], {icon: makeIcon('7')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>07.07\u201308.07</div>\n      <h2>Wenecja / Mestre</h2>\n      <p><b>Status/nocleg:</b> 2 noce</p>\n      <p><b>Odcinek:</b> ~370\u2013430 km</p>\n      <p><b>Czas realny:</b> ~5.5\u20137 h</p>\n      <p><b>Transport/EV:</b> 1\u20132 HPC + AC hotel</p>\n      <p><b>Dlaczego:</b> G\u0142\u00f3wny punkt kulturowy. Auto zostaje w Mestre, Wenecja pieszo/kolej\u0105.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([52.52,13.405], {icon: makeIcon('8')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>09.07</div>\n      <h2>Mestre \u2192 Berlin</h2>\n      <p><b>Status/nocleg:</b> powr\u00f3t roadtripu</p>\n      <p><b>Odcinek:</b> ~1 050\u20131 150 km</p>\n      <p><b>Czas realny:</b> ~13\u201315 h EV</p>\n      <p><b>Transport/EV:</b> 5 HPC</p>\n      <p><b>Dlaczego:</b> Bardzo d\u0142ugi, ale celowy powr\u00f3t z buforem przed lotem. Alternatywa: noc po\u015brednia i Berlin 10.07 rano.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([51.5073,-0.1657], {icon: makeIcon('9')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>10.07</div>\n      <h2>Berlin \u2192 Londyn</h2>\n      <p><b>Status/nocleg:</b> lot + 2 noce Londyn</p>\n      <p><b>Odcinek:</b> lot ~2 h + lotnisko</p>\n      <p><b>Czas realny:</b> bezpieczny przylot dzie\u0144 wcze\u015bniej</p>\n      <p><b>Transport/EV:</b> samolot, nie auto</p>\n      <p><b>Dlaczego:</b> Lecie\u0107 10.07, nie 11.07. Daje bufor na op\u00f3\u017anienia i spokojny check-in.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([51.5423,-0.1307], {icon: makeIcon('10')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>11.07</div>\n      <h2>BST Hyde Park \u2014 Lewis Capaldi</h2>\n      <p><b>Status/nocleg:</b> koncert</p>\n      <p><b>Odcinek:</b> hotel \u2192 Hyde Park</p>\n      <p><b>Czas realny:</b> metro/taxi</p>\n      <p><b>Transport/EV:</b> bez auta</p>\n      <p><b>Dlaczego:</b> Punkt krytyczny: by\u0107 w Londynie od poprzedniego dnia.</p>\n    </div>\n    ", {maxWidth:440});
+L.marker([52.56,13.445], {icon: makeIcon('11')}).addTo(map).bindPopup("\n    <div class='card'>\n      <div class='date'>12.07</div>\n      <h2>Londyn \u2192 Berlin</h2>\n      <p><b>Status/nocleg:</b> powr\u00f3t lotniczy</p>\n      <p><b>Odcinek:</b> lot ~2 h + lotnisko</p>\n      <p><b>Czas realny:</b> najlepiej lot po 12:00</p>\n      <p><b>Transport/EV:</b> samolot</p>\n      <p><b>Dlaczego:</b> Powr\u00f3t po koncercie bez forsowania. Auto czeka w Berlinie.</p>\n    </div>\n    ", {maxWidth:440});
+
+var road=L.polyline([[52.52, 13.405], [47.0325, 8.4326], [46.6863, 7.8632], [46.0679, 7.776], [45.8992, 6.1294], [43.2733, 6.5856], [44.335, 9.212], [45.4942, 12.242], [52.52, 13.405]],{weight:5,opacity:.86}).addTo(map);
+var flight=L.polyline([[52.52, 13.405], [51.5073, -0.1657], [52.52, 13.405]],{weight:4,opacity:.65,dashArray:'10,10'}).addTo(map);
+road.bindPopup('Część samochodowa EV');
+flight.bindPopup('Część lotnicza Berlin-Londyn-Berlin');
+var group=L.featureGroup([road,flight]);
+map.fitBounds(group.getBounds(),{padding:[42,42]});
+</script>
+</body>
+</html>
